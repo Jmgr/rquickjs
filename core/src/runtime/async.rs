@@ -181,6 +181,18 @@ impl AsyncRuntime {
         }
     }
 
+    /// Set a closure which is called when a Promise is rejected.
+    #[inline]
+    pub async fn set_host_promise_rejection_tracker(&self, tracker: Option<RejectionTracker>) {
+        unsafe {
+            self.inner
+                .lock()
+                .await
+                .runtime
+                .set_host_promise_rejection_tracker(tracker);
+        }
+    }
+
     /// Set a closure which is regularly called by the engine when it is executing code.
     /// If the provided closure returns `true` the interpreter will raise and uncatchable
     /// exception and return control flow to the caller.
