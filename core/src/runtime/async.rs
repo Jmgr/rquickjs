@@ -12,13 +12,13 @@ use std::sync::mpsc::{self, Receiver, Sender};
 
 use async_lock::Mutex;
 
-use super::{
-    opaque::Opaque, raw::RawRuntime, schedular::SchedularPoll, spawner::DriveFuture,
-    InterruptHandler, MemoryUsage, PromiseHook, RejectionTracker,
-};
-use crate::allocator::Allocator;
+use super::{opaque::Opaque, raw::RawRuntime, MemoryUsage, PromiseHook, RejectionTracker};
 #[cfg(feature = "loader")]
 use crate::loader::{Loader, Resolver};
+use crate::{
+    allocator::Allocator,
+    runtime::{schedular::SchedularPoll, spawner::DriveFuture, InterruptHandler},
+};
 use crate::{
     context::AsyncContext, result::AsyncJobException, util::ManualPoll, Ctx, Exception, Result,
 };
